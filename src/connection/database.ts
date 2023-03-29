@@ -1,5 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const POSTGRES_URL = process.env.DATABASE_URL as unknown as string;
 const sequelize = new Sequelize(POSTGRES_URL);
