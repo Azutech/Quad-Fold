@@ -1,6 +1,6 @@
 # Quad-Fold
 
-A Cart System that give the best coupon discount.   
+A Cart System that give the best coupon discount.
 
 ## Installation
 
