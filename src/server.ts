@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from "express"
+import { connectDB, sequelize } from "./connection/database"
 import dotenv from "dotenv"
 
 
@@ -20,9 +21,12 @@ server.get('/', (req: Request, res: Response) => {
     console.log('BOOM 🔥🔥')
 })
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
     console.log(`Quad server is listening at http://localhost:${PORT}`)
-
+     await connectDB()
+     sequelize.sync({ force: false }).then(() => {
+        console.log("✅Synced database successfully...");
+      });
 })
 
 export default server
