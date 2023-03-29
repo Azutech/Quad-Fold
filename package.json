@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "prettier": "npx prettier --write .",
     "lint": "eslint --ext .ts . --fix",
-    "build": "npx tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
