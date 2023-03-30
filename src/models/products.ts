@@ -1,6 +1,6 @@
 import {sequelize, DataTypes} from  '../connection/database'
 
-export const cart = sequelize.define('products', {
+export const product = sequelize.define('products', {
     id : {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
