@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { cart } from '../models/cart'
+import { Cart } from '../models/cart'
 import { Product } from '../models/products'
 
 export const addToCart = async (req: Request, res: Response) => {
@@ -14,15 +14,17 @@ export const addToCart = async (req: Request, res: Response) => {
 
         const total = product.price * quantity
 
-        const cartItem = await cart.create({
+        const cartItem = await Cart.create({
             productId,
             quantity,
             total,
         })
-
         res.status(200).json({
             message: 'Product added to cart',
             data: cartItem,
         })
-    } catch (err) {}
+    } catch (err) {
+        console.error(err)
+        res.status(404).json({message:  'Error adding product to cart'})
+    }
 }
