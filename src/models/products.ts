@@ -21,10 +21,9 @@ Product.init(
             allowNull: false,
         },
 
-        description : {
-            type: DataTypes.STRING,
+        description: {
+            type: DataTypes.TEXT,
             allowNull: false,
-
         },
 
         price: {
