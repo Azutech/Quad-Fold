@@ -1,18 +1,40 @@
-import {sequelize, DataTypes} from  '../connection/database'
+import { sequelize, DataTypes } from '../connection/database'
+import { Model } from 'sequelize'
 
-export const product = sequelize.define('products', {
-    id : {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-    },
+export class Product extends Model {
+    public id!: number
+    public name!: string
+    public description!: string
+    public price!: number
+}
 
-    name : {
-        type: DataTypes.STRING,
-        allowNull: false,
+Product.init(
+    {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+        },
+
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
+        description : {
+            type: DataTypes.STRING,
+            allowNull: false,
+
+        },
+
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+        },
     },
-    price: {
-        type: new DataTypes.FLOAT(),
-        allowNull: false,
-      },
-})
+    {
+        sequelize,
+        tableName: 'products',
+        timestamps: true,
+    }
+)

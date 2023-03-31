@@ -1,20 +1,38 @@
-import {sequelize, DataTypes} from  '../connection/database'
+import { sequelize, DataTypes } from '../connection/database'
+import { Model } from 'sequelize'
 
+export class Cart extends Model {
+    public id!: number
+    public productId!: string
+    public total!: string
+    public quantity!: number
+}
 
-export const cart = sequelize.define('cart', {
-    id : {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
+Cart.init(
+    {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+        },
+
+        productId: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+        },
+
+        quantity: {
+            type: new DataTypes.INTEGER(),
+            allowNull: false,
+        },
+
+        total: {
+            type: DataTypes.FLOAT,
+        },
     },
-
-    productId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-    },
-
-    quantity: {
-        type: new DataTypes.INTEGER(),
-        allowNull: false,
-      },
-})
+    {
+        sequelize,
+        tableName: 'cart',
+        timestamps: true,
+    }
+)

@@ -1,109 +1,105 @@
-import {Request, Response} from 'express'
-import { product } from '../models/products'
+import { Request, Response } from 'express'
+import { Product } from '../models/products'
 
-
-export const createProduct = async(req: Request, res: Response)=> {
+export const createProduct = async (req: Request, res: Response) => {
     try {
-        const {name, price} = req.body
+        const { name, price } = req.body
 
-        const products = await product.create({
+        const products = await Product.create({
             name,
-            price
+            price,
         })
 
-        if(!products) { 
+        if (!products) {
             return res.status(404).json({
                 status: 'fail',
-                message: 'Unable to add products'
+                message: 'Unable to add products',
             })
         }
         res.status(200).json({
             message: 'products has been created successfully',
             status: 'success',
-            products
+            products,
         })
     } catch (err: any) {
         console.error(err)
         res.status(500).json({
-            status: "error",
-            message: err.message
+            status: 'error',
+            message: err.message,
         })
-        
     }
 }
 
-export const getOneProduct = async(req: Request, res: Response) => {
+export const getOneProduct = async (req: Request, res: Response) => {
     try {
         const id = req.params.id
 
-        const products = await product.findByPk(id)
+        const products = await Product.findByPk(id)
 
         if (!products) {
             return res.status(404).json({
-                message: `product with the ${products} not found`
+                message: `product with the ${products} not found`,
             })
         }
         res.status(200).json({
-            status: "success",
-            data: products
+            status: 'success',
+            data: products,
         })
     } catch (err) {
         console.error(err)
-       res.status(500).json({
-        status: 'error',
-        message: 'Unable to retrieve the product'
-       })
+        res.status(500).json({
+            status: 'error',
+            message: 'Unable to retrieve the product',
+        })
     }
 }
 
 export const findAllProducts = async (req: Request, res: Response) => {
     try {
-        const name = req.query.name ? { category: req.query.name } : {};
-        const allProducts =  req.query.search
-        ? {
-            name: {
-              $regex: req.query.regex,
-              options: 'i',
-            },
-          }
-        : {};
+        const name = req.query.name ? { category: req.query.name } : {}
+        const allProducts = req.query.search
+            ? {
+                  name: {
+                      $regex: req.query.regex,
+                      options: 'i',
+                  },
+              }
+            : {}
 
-        const products = await product.findAll({where: allProducts})
+        const products = await Product.findAll({ where: allProducts })
         res.status(200).json({
             message: 'all products retrieved',
-            data: products
+            data: products,
         })
     } catch (err) {
         res.status(505).json({
             status: 'error',
-            message: 'Unable to retrieve all products'
+            message: 'Unable to retrieve all products',
         })
     }
 }
 
-export const destroyProduct = async(req: Request, res: Response) => {
+export const destroyProduct = async (req: Request, res: Response) => {
     try {
         const id = req.params.id
 
-        const products = await product.destroy({where: {id : id}})
+        const products = await Product.destroy({ where: { id: id } })
 
         if (!products) {
             return res.status(404).json({
-                message: `product with the ${products} not found`
+                message: `product with the ${products} not found`,
             })
         }
         res.status(200).json({
             message: 'product has been deleted successfully',
-            status: "success",
-            data: products
+            status: 'success',
+            data: products,
         })
-
     } catch (err) {
         console.error(err)
-       res.status(500).json({
-        status: 'error',
-        message: 'Unable to destroy the product'
-       })
+        res.status(500).json({
+            status: 'error',
+            message: 'Unable to destroy the product',
+        })
     }
 }
-

@@ -1,17 +1,17 @@
-import {sequelize, DataTypes} from  '../connection/database'
+import { sequelize, DataTypes } from '../connection/database'
 
 export const coupons = sequelize.define('coupons', {
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
-      },
-      code: {
+    },
+    code: {
         type: new DataTypes.STRING(32),
         allowNull: false,
-      },
-      discountPercentage: {
+    },
+    discountPercentage: {
         type: new DataTypes.FLOAT(),
         allowNull: false,
-      },
+    },
 })
