@@ -25,6 +25,31 @@ export const addToCart = async (req: Request, res: Response) => {
         })
     } catch (err) {
         console.error(err)
-        res.status(404).json({message:  'Error adding product to cart'})
+        res.status(404).json({ message: 'Error adding product to cart' })
+    }
+}
+
+export const removeFromCart = async (req: Request, res: Response) => {
+    const { productId, cartId } = req.params
+
+    try {
+        const product = await Product.findByPk(productId)
+        if (!product) {
+            return res.status(404).json({ err: 'Product does not exist' })
+        }
+        const cart = await Cart.findByPk(cartId)
+        if (!cart) {
+            return res.status(404).json({ err: 'Cart not found' })
+        }
+
+        const destroy = await Cart.destroy({ where: { productId: productId } })
+
+        return res.status(201).json({
+            message: 'Product has been removed successfully',
+            data: destroy,
+        })
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ err: 'server error' })
     }
 }

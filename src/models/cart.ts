@@ -1,5 +1,6 @@
 import { sequelize, DataTypes } from '../connection/database'
 import { Model } from 'sequelize'
+import { Product } from './products'
 
 export class Cart extends Model {
     public id!: number
@@ -19,6 +20,10 @@ Cart.init(
         productId: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: 'Products',
+                key: 'id',
+            },
         },
 
         quantity: {
@@ -36,3 +41,5 @@ Cart.init(
         timestamps: true,
     }
 )
+
+Cart.hasMany(Product)
