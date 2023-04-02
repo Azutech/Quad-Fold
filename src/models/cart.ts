@@ -21,8 +21,8 @@ Cart.init(
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             references: {
-                model: 'Products',
-                key: 'id',
+                model: Product,
+                key: 'productId',
             },
         },
 
@@ -42,4 +42,4 @@ Cart.init(
     }
 )
 
-Cart.hasMany(Product)
+// Cart.hasMany(Product)
