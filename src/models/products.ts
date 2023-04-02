@@ -4,7 +4,6 @@ import { Model } from 'sequelize'
 export class Product extends Model {
     public id!: number
     public name!: string
-    public description!: string
     public price!: number
 }
 
@@ -15,19 +14,9 @@ Product.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-    
-        productId: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
         
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        description: {
-            type: DataTypes.TEXT,
             allowNull: false,
         },
 

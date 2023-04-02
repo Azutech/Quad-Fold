@@ -4,6 +4,6 @@ import { createProduct ,getOneProduct, findAllProducts, destroyProduct} from '..
 export const product = Router()
 
 product.post('/addProducts', createProduct)
-product.get('/addProducts/:id', getOneProduct)
-product.get('/addProducts', findAllProducts)
-product.delete('/addProducts/:id', destroyProduct)
+product.get('/getOneProduct/:id', getOneProduct)
+product.get('/getAllProducts', findAllProducts)
+product.delete('/destroyOneProduct/:id', destroyProduct)
