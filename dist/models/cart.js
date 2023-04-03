@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cart = void 0;
 const database_1 = require("../connection/database");
 const sequelize_1 = require("sequelize");
-const products_1 = require("./products");
 class Cart extends sequelize_1.Model {
 }
 exports.Cart = Cart;
@@ -17,8 +16,8 @@ Cart.init({
         type: database_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         references: {
-            model: 'Products',
-            key: 'id',
+            model: 'products',
+            key: 'productId',
         },
     },
     quantity: {
@@ -33,4 +32,4 @@ Cart.init({
     tableName: 'cart',
     timestamps: true,
 });
-Cart.hasMany(products_1.Product);
+// Cart.belongsTo(Product, { foreignKey: 'productId' });

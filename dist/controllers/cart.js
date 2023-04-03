@@ -32,7 +32,10 @@ const addToCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (err) {
         console.error(err);
-        res.status(404).json({ message: 'Error adding product to cart' });
+        res.status(504).json({
+            pst: 'Error adding product to cart',
+            msg: err.message,
+        });
     }
 });
 exports.addToCart = addToCart;

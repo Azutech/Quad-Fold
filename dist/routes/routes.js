@@ -4,6 +4,8 @@ exports.routes = void 0;
 const express_1 = require("express");
 const product_1 = require("./product");
 const cart_1 = require("./cart");
+const coupons_1 = require("./coupons");
 exports.routes = (0, express_1.Router)();
 exports.routes.use('/products', product_1.product);
 exports.routes.use('/cart', cart_1.cart);
+exports.routes.use('/coupons', coupons_1.coupons);

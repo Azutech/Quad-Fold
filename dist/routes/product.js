@@ -5,3 +5,6 @@ const express_1 = require("express");
 const products_1 = require("../controllers/products");
 exports.product = (0, express_1.Router)();
 exports.product.post('/addProducts', products_1.createProduct);
+exports.product.get('/getOneProduct/:id', products_1.getOneProduct);
+exports.product.get('/getAllProducts', products_1.findAllProducts);
+exports.product.delete('/destroyOneProduct/:id', products_1.destroyProduct);

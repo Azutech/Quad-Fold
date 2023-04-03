@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.coupons = void 0;
+const express_1 = require("express");
+const coupons_1 = require("../controllers/coupons");
+exports.coupons = (0, express_1.Router)();
+exports.coupons.post('/createCoupons', coupons_1.createCoupons);
+exports.coupons.post('/coupons/discount', coupons_1.discount);
+exports.coupons.get('/getAllCoupons', coupons_1.findAllCoupons);
+exports.coupons.get('/getOneCoupons/:id', coupons_1.getOneCoupon);
+exports.coupons.get('/destroyCoupons/:id', coupons_1.destroyCoupon);

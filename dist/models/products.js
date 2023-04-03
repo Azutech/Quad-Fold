@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const database_1 = require("../connection/database");
 const sequelize_1 = require("sequelize");
+const cart_1 = require("./cart");
 class Product extends sequelize_1.Model {
 }
 exports.Product = Product;
@@ -16,10 +17,6 @@ Product.init({
         type: database_1.DataTypes.STRING,
         allowNull: false,
     },
-    description: {
-        type: database_1.DataTypes.TEXT,
-        allowNull: false,
-    },
     price: {
         type: database_1.DataTypes.DECIMAL,
         allowNull: false,
@@ -29,3 +26,4 @@ Product.init({
     tableName: 'products',
     timestamps: true,
 });
+Product.hasMany(cart_1.Cart, { foreignKey: 'productId' });
