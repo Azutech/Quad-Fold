@@ -3,13 +3,11 @@ import { Product } from '../models/products'
 
 export const createProduct = async (req: Request, res: Response) => {
     try {
-        const { name, price,  } = req.body
-
+        const { name, price } = req.body
 
         const products = await Product.create({
             name,
             price,
-            
         })
 
         if (!products) {

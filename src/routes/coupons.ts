@@ -1,5 +1,11 @@
-import { Router } from "express";
-import { createCoupons, discount, findAllCoupons, getOneCoupon, destroyCoupon } from "../controllers/coupons";
+import { Router } from 'express'
+import {
+    createCoupons,
+    discount,
+    findAllCoupons,
+    getOneCoupon,
+    destroyCoupon,
+} from '../controllers/coupons'
 
 export const coupons = Router()
 
