@@ -1,10 +1,9 @@
 import { sequelize, DataTypes } from '../connection/database'
 import { Model } from 'sequelize'
-
+import { Cart } from './cart'
 export class Product extends Model {
     public id!: number
     public name!: string
-    public description!: string
     public price!: number
 }
 
@@ -21,11 +20,6 @@ Product.init(
             allowNull: false,
         },
 
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-
         price: {
             type: DataTypes.DECIMAL,
             allowNull: false,
@@ -36,4 +30,8 @@ Product.init(
         tableName: 'products',
         timestamps: true,
     }
+
 )
+
+
+Product.hasMany(Cart, { foreignKey: 'productId' });

@@ -4,7 +4,7 @@ import { Product } from './products'
 
 export class Cart extends Model {
     public id!: number
-    public productId!: string
+    public productId!: number
     public total!: string
     public quantity!: number
 }
@@ -21,8 +21,8 @@ Cart.init(
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             references: {
-                model: 'Products',
-                key: 'id',
+                model: 'products',
+                key: 'productId',
             },
         },
 
@@ -42,4 +42,4 @@ Cart.init(
     }
 )
 
-Cart.hasMany(Product)
+// Cart.belongsTo(Product, { foreignKey: 'productId' });
